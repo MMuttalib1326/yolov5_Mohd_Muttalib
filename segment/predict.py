@@ -177,7 +177,7 @@ def run(
                     class_muttalib.append(names[int(c)])
                     class_count.append(str(n.numpy()))
                     print("muttalib",str(n.numpy()),names[int(c)])
-                    frame_muttalib.append()
+                    #frame_muttalib.append()
                    #print("123",s[s.index('1/1')+3:s.index('/content')])
                   
 
