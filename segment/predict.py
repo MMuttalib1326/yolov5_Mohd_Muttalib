@@ -169,7 +169,7 @@ def run(
                 # Print results
                 class_muttalib=[]
                 class_count=[]
-                frame_muttalib=[]
+                #frame_muttalib=[]
                 for c in det[:, 5].unique():
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
