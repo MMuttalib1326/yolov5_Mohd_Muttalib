@@ -167,10 +167,19 @@ def run(
                         for x in segments]
 
                 # Print results
+                class_muttalib=[]
+                class_count=[]
+                frame_muttalib=[]
                 for c in det[:, 5].unique():
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
-                    print("muttalib",n,names[int(c)])
+                    #print("muttalib",n,names[int(c)])
+                    class_muttalib.append(names[int(c)])
+                    class_count.append(str(n.numpy()))
+                    print("muttalib",str(n.numpy()),names[int(c)])
+                    frame_muttalib.append()
+                   #print("123",s[s.index('1/1')+3:s.index('/content')])
+                  
 
                 # Mask plotting
                 plot_img = torch.as_tensor(im0, dtype=torch.float16).to(device).permute(2, 0, 1).flip(0).contiguous() / 255. \
