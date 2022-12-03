@@ -134,7 +134,9 @@ def run(
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-
+        class_muttalib=[]
+        class_count=[]
+        frame_muttalib=[]
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
@@ -167,9 +169,7 @@ def run(
                         for x in segments]
 
                 # Print results
-                class_muttalib=[]
-                class_count=[]
-                #frame_muttalib=[]
+
                 for c in det[:, 5].unique():
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
@@ -177,10 +177,12 @@ def run(
                     class_muttalib.append(names[int(c)])
                     class_count.append(str(n.numpy()))
                     print("muttalib",str(n.numpy()),names[int(c)])
-                    #frame_muttalib.append()
-                   #print("123",s[s.index('1/1')+3:s.index('/content')])
-                  
-
+                    frame_muttalib.append(s[s.index('1/1')+3:s.index('/content')])
+                    #print("123",s[s.index('1/1')+3:s.index('/content')])
+                 
+                
+                df = pd.Dataframe({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
+                df.to_csv('Output_kliky.csv',index=False)
                 # Mask plotting
                 plot_img = torch.as_tensor(im0, dtype=torch.float16).to(device).permute(2, 0, 1).flip(0).contiguous() / 255. \
                         if retina_masks else im[i]
@@ -232,6 +234,10 @@ def run(
                         vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
                     vid_writer[i].write(im0)
 
+        
+
+        df = pd.Dataframe({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
+        df.to_csv('Output_kliky.csv',index=False)
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
