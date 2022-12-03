@@ -182,8 +182,8 @@ def run(
                     #print("123",s[s.index('1/1')+3:s.index('/content')])
                  
                 
-                df = pd.Dataframe({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
-                df.to_csv('Output_kliky.csv',index=False)
+                df = pd.DataFrame({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
+                df.to_csv('Output_kliky_Muttalib1.csv',index=False)
                 # Mask plotting
                 plot_img = torch.as_tensor(im0, dtype=torch.float16).to(device).permute(2, 0, 1).flip(0).contiguous() / 255. \
                         if retina_masks else im[i]
@@ -237,8 +237,8 @@ def run(
 
         
 
-        df = pd.Dataframe({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
-        df.to_csv('Output_kliky.csv',index=False)
+        df = pd.DataFrame({'Classes':class_muttalib,'Person Count':class_count, 'Frame no':frame_muttalib})
+        df.to_csv('Output_kliky_Muttalib2.csv',index=False)
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
