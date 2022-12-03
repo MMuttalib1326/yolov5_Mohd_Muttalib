@@ -49,6 +49,9 @@ from utils.general import (LOGGER, Profile, check_file, check_img_size, check_im
 from utils.plots import Annotator, colors, save_one_box
 from utils.segment.general import masks2segments, process_mask, process_mask_native
 from utils.torch_utils import select_device, smart_inference_mode
+class_muttalib=[]
+class_count=[]
+frame_muttalib=[]
 
 
 @smart_inference_mode()
@@ -135,9 +138,6 @@ def run(
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-class_muttalib=[]
-class_count=[]
-frame_muttalib=[]
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
