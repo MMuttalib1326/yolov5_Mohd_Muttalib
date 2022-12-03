@@ -135,9 +135,9 @@ def run(
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-        class_muttalib=[]
-        class_count=[]
-        frame_muttalib=[]
+class_muttalib=[]
+class_count=[]
+frame_muttalib=[]
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
